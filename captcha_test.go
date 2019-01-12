@@ -18,12 +18,12 @@ func TestNew(t *testing.T) {
 
 func TestVerify(t *testing.T) {
 	id := New()
-	if Verify(id, []byte{0, 0}) {
+	if Verify(id, []byte{0, 0}, true) {
 		t.Errorf("verified wrong captcha")
 	}
 	id = New()
 	d := globalStore.Get(id, false) // cheating
-	if !Verify(id, d) {
+	if !Verify(id, d, true) {
 		t.Errorf("proper captcha not verified")
 	}
 }
